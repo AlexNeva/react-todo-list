@@ -32,11 +32,15 @@ const App = () => {
     setTasks(tasks.filter(t => t.id !== task.id))
   }
 
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask])
+  }
+
   return (
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
-        <NewTaskForm />
+        <NewTaskForm addTask={addTask} />
       </header>
       <section className="main">
         <TaskList tasks={tasks} changeStatus={changeStatus} deleteTask={deleteTask} />
