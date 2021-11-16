@@ -2,12 +2,12 @@ import React from 'react';
 import './TaskList.css';
 import Task from '../Task/Task';
 
-const TaskList = (props) => {
+const TaskList = ({ tasks, changeStatus, deleteTask }) => {
 
   return (
     <ul className='todo-list'>
-      {props.todos.map(todo => {
-        return <Task todo={todo} key={todo.id} />
+      {tasks.map(t => {
+        return <Task task={t} key={t.id} changeStatus={changeStatus} deleteTask={deleteTask} />
       })}
     </ul>
   )
