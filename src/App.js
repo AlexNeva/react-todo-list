@@ -8,8 +8,8 @@ const App = () => {
 
   const [tasks, setTasks] = useState([
     { id: 1, status: '', description: 'Task 1' },
-    { id: 2, status: '', description: 'Task 3' },
-    { id: 3, status: '', description: 'Task 2' },
+    { id: 2, status: '', description: 'Task 2' },
+    { id: 3, status: '', description: 'Task 3' },
   ])
 
   const changeStatus = (task, status) => {
