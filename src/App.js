@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
 import './global.css'
 import NewTaskForm from './components/NewTaskForm/NewTaskForm';
 import TaskList from './components/TaskList/TaskList';
@@ -7,9 +8,9 @@ import Footer from './components/Footer/Footer';
 const App = () => {
 
   const todos = [
-    { id: 1, completed: false, editing: false, description: 'Task 1' },
-    { id: 2, completed: true, editing: false, description: 'Task 2' },
-    { id: 3, completed: false, editing: false, description: 'Task 3' },
+    { id: 1, completed: false, editing: false, description: 'Task 1', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
+    { id: 2, completed: true, editing: false, description: 'Task 2', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
+    { id: 3, completed: false, editing: false, description: 'Task 3', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
   ]
 
   const [tasks, setTasks] = useState(todos);
@@ -63,13 +64,23 @@ const App = () => {
   const editTask = (task) => {
     setTasks(tasks.map(t => {
       if (t.id === task.id) {
-        return { ...t, editing: !task.editing }
+        return { ...task, editing: !t.editing }
       } else {
         return t
       }
     }))
 
 
+  }
+
+  const changeTaskName = (task) => {
+    setTasks(tasks.map(t => {
+      if (t.id === task.id) {
+        return { ...t, description: task.description }
+      } else {
+        return t
+      }
+    }))
   }
 
   const clearCompleted = () => {
@@ -99,7 +110,7 @@ const App = () => {
         <NewTaskForm addTask={addTask} />
       </header>
       <section className="main">
-        <TaskList tasks={filtered} changeStatus={changeStatus} deleteTask={deleteTask} edit={editTask} />
+        <TaskList tasks={filtered} changeStatus={changeStatus} deleteTask={deleteTask} edit={editTask} changeName={changeTaskName} />
         <Footer tasks={tasks} filter={todoFilter} clear={clearCompleted} />
       </section>
     </section>

@@ -1,8 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import './TaskList.css';
 import Task from '../Task/Task';
 
 const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => {
+
+
+
 
   return (
     <ul className='todo-list'>
@@ -11,6 +15,20 @@ const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => {
       })}
     </ul>
   )
+}
+
+TaskList.defaultProps = {
+  tasks: [],
+  changeStatus: () => { },
+  deleteTask: () => { },
+  edit: () => { },
+}
+
+TaskList.propTypes = {
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  changeStatus: PropTypes.func,
+  deleteTask: PropTypes.func,
+  edit: PropTypes.func,
 }
 
 export default TaskList;

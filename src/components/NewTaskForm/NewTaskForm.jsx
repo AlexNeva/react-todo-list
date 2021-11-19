@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import PropTypes from 'prop-types'
+
+
 import './NewTaskForm.css';
 
 const NewTaskForm = ({ addTask }) => {
@@ -9,7 +13,7 @@ const NewTaskForm = ({ addTask }) => {
     e.preventDefault();
 
     const newTask = {
-      ...task, id: Date.now(), completed: false
+      ...task, id: Date.now(), completed: false, createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true })
     }
 
     addTask(newTask);
@@ -24,6 +28,14 @@ const NewTaskForm = ({ addTask }) => {
     </form>
   )
 
+}
+
+NewTaskForm.defaultProps = {
+  addTask: () => { },
+}
+
+NewTaskForm.propTypes = {
+  addTask: PropTypes.func,
 }
 
 export default NewTaskForm;
