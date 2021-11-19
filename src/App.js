@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './global.css'
 import NewTaskForm from './components/NewTaskForm/NewTaskForm';
 import TaskList from './components/TaskList/TaskList';
@@ -6,22 +6,28 @@ import Footer from './components/Footer/Footer';
 
 const App = () => {
 
-  const [tasks, setTasks] = useState([
-    { id: 1, status: '', description: 'Task 1' },
-    { id: 2, status: '', description: 'Task 2' },
-    { id: 3, status: '', description: 'Task 3' },
-  ])
+  const todos = [
+    { id: 1, completed: false, editing: false, description: 'Task 1' },
+    { id: 2, completed: true, editing: false, description: 'Task 2' },
+    { id: 3, completed: false, editing: false, description: 'Task 3' },
+  ]
 
-  const changeStatus = (task, status) => {
+  const [tasks, setTasks] = useState(todos);
+
+  const [filtered, setFiltered] = useState(todos);
+
+  useEffect(() => {
+    setFiltered(tasks)
+  }, [tasks])
+
+
+
+
+  const changeStatus = (task) => {
     setTasks(tasks.map(t => {
-      if (t.id === task.id && t.status !== status) {
-        return { ...t, status: status }
+      if (t.id === task.id) {
+        return { ...t, completed: !task.completed }
       }
-
-      if (t.id === task.id && t.status === status) {
-        return { ...t, status: '' }
-      }
-
 
       return t
 
@@ -33,8 +39,58 @@ const App = () => {
   }
 
   const addTask = (newTask) => {
-    setTasks([...tasks, newTask])
+    if (newTask.description.trim()) {
+      setTasks([...tasks, newTask])
+    }
+
   }
+
+  const todoFilter = (status) => {
+    if (status === 'All') {
+      setFiltered(tasks);
+    }
+    if (status === 'Active') {
+      const filtered = tasks.filter(task => !task.completed)
+      setFiltered(filtered);
+    }
+
+    if (status === 'Completed') {
+      const filtered = tasks.filter(task => task.completed)
+      setFiltered(filtered);
+    }
+  }
+
+  const editTask = (task) => {
+    setTasks(tasks.map(t => {
+      if (t.id === task.id) {
+        return { ...t, editing: !task.editing }
+      } else {
+        return t
+      }
+    }))
+
+
+  }
+
+  const clearCompleted = () => {
+    const newTasks = tasks.filter(task => !task.completed);
+
+    setTasks(newTasks);
+
+  }
+
+
+  // const filter = (items, filter) => {
+  //   switch (filter) {
+  //     case 'all':
+  //       return items;
+  //     case 'active':
+  //       return items.filter((item) => item.status === '');
+  //     case "completed":
+  //       return items.filter((item) => item.status === 'completed');
+  //     default: return items;
+  //   }
+  // }
 
   return (
     <section className="todoapp">
@@ -43,8 +99,8 @@ const App = () => {
         <NewTaskForm addTask={addTask} />
       </header>
       <section className="main">
-        <TaskList tasks={tasks} changeStatus={changeStatus} deleteTask={deleteTask} />
-        <Footer />
+        <TaskList tasks={filtered} changeStatus={changeStatus} deleteTask={deleteTask} edit={editTask} />
+        <Footer tasks={tasks} filter={todoFilter} clear={clearCompleted} />
       </section>
     </section>
   )

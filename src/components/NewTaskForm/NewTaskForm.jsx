@@ -9,7 +9,7 @@ const NewTaskForm = ({ addTask }) => {
     e.preventDefault();
 
     const newTask = {
-      ...task, id: Date.now()
+      ...task, id: Date.now(), completed: false
     }
 
     addTask(newTask);
