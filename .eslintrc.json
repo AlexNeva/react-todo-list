@@ -13,8 +13,7 @@
     "airbnb/hooks",
     "plugin:prettier/recommended",
     // "eslint-config-prettier",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
