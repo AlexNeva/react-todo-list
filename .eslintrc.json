@@ -5,10 +5,15 @@
     "jest": true
   },
   "extends": [
+    "plugin:react-hooks/recommended",
     "plugin:react/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "airbnb",
     "airbnb/hooks",
-    "eslint-config-prettier",
+    "plugin:prettier/recommended",
+    // "eslint-config-prettier",
+    "prettier",
     "prettier/react"
   ],
   "parserOptions": {
@@ -19,7 +24,8 @@
     "sourceType": "module"
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
   ],
   "rules": {
     "curly": [
