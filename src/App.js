@@ -1,107 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import './global.css'
-import NewTaskForm from './components/NewTaskForm/NewTaskForm';
+import './global.css';
+import NewTaskForm from './components/NewTaskForm/NewTaskForm'
 import TaskList from './components/TaskList/TaskList';
 import Footer from './components/Footer/Footer';
 
-const App = () => {
-
+const App = function () {
   const todos = [
-    { id: 1, completed: false, editing: false, description: 'Task 1', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
-    { id: 2, completed: true, editing: false, description: 'Task 2', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
-    { id: 3, completed: false, editing: false, description: 'Task 3', createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }) },
-  ]
+    {
+      id: 1,
+      completed: false,
+      editing: false,
+      description: 'Task 1',
+      createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }),
+    },
+    {
+      id: 2,
+      completed: true,
+      editing: false,
+      description: 'Task 2',
+      createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }),
+    },
+    {
+      id: 3,
+      completed: false,
+      editing: false,
+      description: 'Task 3',
+      createTime: formatDistanceToNow(new Date(), { addSuffix: true, includeSeconds: true }),
+    },
+  ];
 
   const [tasks, setTasks] = useState(todos);
 
   const [filtered, setFiltered] = useState(todos);
 
   useEffect(() => {
-    setFiltered(tasks)
-  }, [tasks])
-
-
-
+    setFiltered(tasks);
+  }, [tasks]);
 
   const changeStatus = (task) => {
-    setTasks(tasks.map(t => {
-      if (t.id === task.id) {
-        return { ...t, completed: !task.completed }
-      }
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return { ...t, completed: !task.completed };
+        }
 
-      return t
-
-    }))
+        return t;
+      })
+    );
   };
 
   const deleteTask = (task) => {
-    setTasks(tasks.filter(t => t.id !== task.id))
-  }
+    setTasks(tasks.filter((t) => t.id !== task.id));
+  };
 
   const addTask = (newTask) => {
     if (newTask.description.trim()) {
-      setTasks([...tasks, newTask])
+      setTasks([...tasks, newTask]);
     }
-
-  }
+  };
 
   const todoFilter = (status) => {
     if (status === 'All') {
       setFiltered(tasks);
     }
     if (status === 'Active') {
-      const filtered = tasks.filter(task => !task.completed)
-      setFiltered(filtered);
+      const newTasks = tasks.filter((task) => !task.completed);
+      setFiltered(newTasks);
     }
 
     if (status === 'Completed') {
-      const filtered = tasks.filter(task => task.completed)
-      setFiltered(filtered);
+      const newTasks = tasks.filter((task) => task.completed);
+      setFiltered(newTasks);
     }
-  }
+  };
 
   const editTask = (task) => {
-    setTasks(tasks.map(t => {
-      if (t.id === task.id) {
-        return { ...task, editing: !t.editing }
-      } else {
-        return t
-      }
-    }))
-
-
-  }
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return { ...task, editing: !t.editing };
+        }
+        return t;
+      })
+    );
+  };
 
   const changeTaskName = (task) => {
-    setTasks(tasks.map(t => {
-      if (t.id === task.id) {
-        return { ...t, description: task.description }
-      } else {
-        return t
-      }
-    }))
-  }
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return { ...t, description: task.description };
+        }
+        return t;
+      })
+    );
+  };
 
   const clearCompleted = () => {
-    const newTasks = tasks.filter(task => !task.completed);
+    const newTasks = tasks.filter((task) => !task.completed);
 
     setTasks(newTasks);
-
-  }
-
-
-  // const filter = (items, filter) => {
-  //   switch (filter) {
-  //     case 'all':
-  //       return items;
-  //     case 'active':
-  //       return items.filter((item) => item.status === '');
-  //     case "completed":
-  //       return items.filter((item) => item.status === 'completed');
-  //     default: return items;
-  //   }
-  // }
+  };
 
   return (
     <section className="todoapp">
@@ -110,11 +110,17 @@ const App = () => {
         <NewTaskForm addTask={addTask} />
       </header>
       <section className="main">
-        <TaskList tasks={filtered} changeStatus={changeStatus} deleteTask={deleteTask} edit={editTask} changeName={changeTaskName} />
+        <TaskList
+          tasks={filtered}
+          changeStatus={changeStatus}
+          deleteTask={deleteTask}
+          edit={editTask}
+          changeName={changeTaskName}
+        />
         <Footer tasks={tasks} filter={todoFilter} clear={clearCompleted} />
       </section>
     </section>
-  )
-}
+  );
+};
 
 export default App;
