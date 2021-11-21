@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const Task = ({ task, changeStatus, deleteTask, edit }) => {
 
-  const [editingTask, setEditingTask] = useState(task)
+  const [editingTask, setEditingTask] = useState(task);
 
 
 

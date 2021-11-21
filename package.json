@@ -17,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint --ext .js, .jsx src --fix",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
