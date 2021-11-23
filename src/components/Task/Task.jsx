@@ -33,7 +33,7 @@ const Task = ({ task, changeStatus, deleteTask, edit }) => {
             focusInput();
           }}
         ></button>
-        <button className="icon icon-destroy" onClick={() => deleteTask(task)}></button>
+        <button className="icon icon-destroy" onClick={() => deleteTask(task)} />
       </div>
       <input
         onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
