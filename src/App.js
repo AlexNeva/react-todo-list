@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { formatDistanceToNow } from 'date-fns'
-import './global.css'
+import React, { useState, useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import './global.css';
 import NewTaskForm from './components/NewTaskForm/NewTaskForm';
 import TaskList from './components/TaskList/TaskList'
 import Footer from './components/Footer/Footer'
