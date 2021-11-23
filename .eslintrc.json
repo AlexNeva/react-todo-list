@@ -5,14 +5,9 @@
     "jest": true
   },
   "extends": [
-    "plugin:react-hooks/recommended",
-    "plugin:react/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
     "airbnb",
     "airbnb/hooks",
-    "plugin:prettier/recommended",
-    // "eslint-config-prettier",
+    "eslint-config-prettier",
     "prettier"
   ],
   "parser": "@babel/eslint-parser",
@@ -88,6 +83,13 @@
           ".js",
           ".jsx"
         ]
+      }
+    ],
+    "react/function-component-definition": [
+      0,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
       }
     ]
   },

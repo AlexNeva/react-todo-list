@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { formatDistanceToNow } from 'date-fns'
-import './global.css'
-import NewTaskForm from './components/NewTaskForm/NewTaskForm'
-import TaskList from './components/TaskList/TaskList'
-import Footer from './components/Footer/Footer'
+import React, { useState, useEffect } from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import './global.css';
+import NewTaskForm from './components/NewTaskForm/NewTaskForm';
+import TaskList from './components/TaskList/TaskList';
+import Footer from './components/Footer/Footer';
 
-const App = function () {
+const App = () => {
   const todos = [
     {
       id: 1,
@@ -40,18 +40,18 @@ const App = function () {
 
   const changeStatus = (task) => {
     setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return { ...t, completed: !task.completed };
+      tasks.map((tsk) => {
+        if (tsk.id === task.id) {
+          return { ...tsk, completed: !task.completed };
         }
 
-        return t;
+        return tsk;
       })
     );
   };
 
   const deleteTask = (task) => {
-    setTasks(tasks.filter((t) => t.id !== task.id));
+    setTasks(tasks.filter((tsk) => tsk.id !== task.id));
   };
 
   const addTask = (newTask) => {
@@ -77,22 +77,22 @@ const App = function () {
 
   const editTask = (task) => {
     setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return { ...task, editing: !t.editing };
+      tasks.map((tsk) => {
+        if (tsk.id === task.id) {
+          return { ...task, editing: !tsk.editing };
         }
-        return t;
+        return tsk;
       })
     );
   };
 
   const changeTaskName = (task) => {
     setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return { ...t, description: task.description };
+      tasks.map((tsk) => {
+        if (tsk.id === task.id) {
+          return { ...tsk, description: task.description };
         }
-        return t;
+        return tsk;
       })
     );
   };
