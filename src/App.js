@@ -5,7 +5,7 @@ import NewTaskForm from './components/NewTaskForm/NewTaskForm';
 import TaskList from './components/TaskList/TaskList';
 import Footer from './components/Footer/Footer';
 
-const App = function () {
+const App = () => {
   const todos = [
     {
       id: 1,

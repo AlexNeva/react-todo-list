@@ -37,7 +37,7 @@ const Task = ({ task, changeStatus, deleteTask, edit }) => {
         <button type="button" aria-label="delete" className="icon icon-destroy" onClick={() => deleteTask(task)} />
       </div>
       <input
-        onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
+        onChange={(evt) => setEditingTask({ ...editingTask, description: evt.target.value })}
         ref={editInput}
         type="text"
         className="edit"
