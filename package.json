@@ -21,7 +21,8 @@
     "lint:fix": "eslint ./src --fix --color",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier ./src --write"
   },
   "eslintConfig": {
     "extends": [
@@ -65,7 +66,7 @@
   "lint-staged": {
     "**/*.(js,jsx)": [
       "npm run lint:fix",
-      "npx prettier --write",
+      "npm run prettier",
       "git add"
     ]
   }
