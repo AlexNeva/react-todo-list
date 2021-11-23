@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import './TaskList.css';
-import Task from '../Task/Task';
+import './TaskList.css'
+import Task from '../Task/Task'
 
 const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => {
-
-
-
-
   return (
     <ul className='todo-list'>
       {tasks.map(t => {

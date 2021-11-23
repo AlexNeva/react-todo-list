@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
+    "lint:fix": "eslint ./src --fix --color",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build",
     "prepare": "husky install"
@@ -53,7 +53,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "gh-pages": "^3.2.3",
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "lint-staged": "^12.1.1",
     "prettier": "^2.4.1"
   },
@@ -63,8 +63,9 @@
     }
   },
   "lint-staged": {
-    "*.(js,jsx)": [
+    "**/*.(js,jsx)": [
       "npm run lint:fix",
+      "npx prettier --write",
       "git add"
     ]
   }
