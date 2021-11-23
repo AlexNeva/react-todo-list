@@ -27,13 +27,14 @@ const Task = ({ task, changeStatus, deleteTask, edit }) => {
           <span className="created">created {task.createTime}</span>
         </label>
         <button
+          type="button" aria-label="edit"
           className="icon icon-edit"
           onClick={() => {
             edit(task);
             focusInput();
           }}
-        ></button>
-        <button className="icon icon-destroy" onClick={() => deleteTask(task)} />
+        />
+        <button type="button" aria-label="delete" className="icon icon-destroy" onClick={() => deleteTask(task)} />
       </div>
       <input
         onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
@@ -47,8 +48,18 @@ const Task = ({ task, changeStatus, deleteTask, edit }) => {
   );
 };
 
+Task.defaultProps = {
+  task: {},
+  changeStatus: () => { },
+  deleteTask: () => { },
+  edit: () => { },
+};
+
 Task.propTypes = {
-  task: PropTypes.object,
+  task: PropTypes.objectOf(PropTypes.object),
+  changeStatus: PropTypes.func,
+  deleteTask: PropTypes.func,
+  edit: PropTypes.func,
 };
 
 export default Task;

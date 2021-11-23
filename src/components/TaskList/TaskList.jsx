@@ -4,11 +4,9 @@ import './TaskList.css';
 import Task from '../Task/Task';
 
 const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => {
-  return (
+  (
     <ul className="todo-list">
-      {tasks.map((tsk) => {
-        return <Task task={tsk} key={tsk.id} changeStatus={changeStatus} deleteTask={deleteTask} edit={edit} />;
-      })}
+      {tasks.map((tsk) => <Task task={tsk} key={tsk.id} changeStatus={changeStatus} deleteTask={deleteTask} edit={edit} />)}
     </ul>
   );
 };

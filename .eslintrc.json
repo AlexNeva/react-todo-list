@@ -85,10 +85,11 @@
         ]
       }
     ],
-    "react/jsx-no-bind": [
-      "off",
+    "react/function-component-definition": [
+      0,
       {
-        "allowArrowFunctions": true
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
       }
     ]
   },
