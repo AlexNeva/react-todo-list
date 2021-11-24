@@ -25,18 +25,18 @@ const NewTaskForm = ({ addTask }) => {
   return (
     <form onSubmit={addNewTask}>
       <input
-        onChange={(e) => setTask({ ...task, description: e.target.value })}
+        onChange={(evt) => setTask({ ...task, description: evt.target.value })}
         className="new-todo"
         value={task.description}
         placeholder="What needs to be done?"
-        autoFocus
-      ></input>
+
+      />
     </form>
   );
 };
 
 NewTaskForm.defaultProps = {
-  addTask: () => {},
+  addTask: () => { },
 };
 
 NewTaskForm.propTypes = {

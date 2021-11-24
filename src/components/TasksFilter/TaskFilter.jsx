@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import './TaskFilter.css';
 
 function TaskFilter({ filter }) {
@@ -15,9 +16,9 @@ function TaskFilter({ filter }) {
       btns.map((btn) => {
         if (btn.status === button.status) {
           return { ...btn, selected: true };
-        } else {
-          return { ...btn, selected: false };
         }
+        return { ...btn, selected: false };
+
       })
     );
   };
@@ -26,7 +27,7 @@ function TaskFilter({ filter }) {
     <ul className="filters">
       {btns.map((button) => (
         <li key={button.descr}>
-          <button
+          <button type="button" aria-label="choice tab"
             className={button.selected ? 'selected' : ''}
             onClick={() => {
               filter(button.status);
@@ -40,5 +41,15 @@ function TaskFilter({ filter }) {
     </ul>
   );
 }
+
+TaskFilter.defaultProps = {
+
+  filter: () => { }
+};
+
+TaskFilter.propTypes = {
+
+  filter: PropTypes.func,
+};
 
 export default TaskFilter;

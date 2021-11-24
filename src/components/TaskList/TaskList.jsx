@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import './TaskList.css';
 import Task from '../Task/Task';
 
-const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => {
-  (
-    <ul className="todo-list">
-      {tasks.map((tsk) => <Task task={tsk} key={tsk.id} changeStatus={changeStatus} deleteTask={deleteTask} edit={edit} />)}
-    </ul>
-  );
-};
+const TaskList = ({ tasks, changeStatus, deleteTask, edit }) => (
+  <ul className="todo-list">
+    {tasks.map((tsk) => <Task task={tsk} key={tsk.id} changeStatus={changeStatus} deleteTask={deleteTask} edit={edit} />)}
+  </ul>
+);
+
 
 TaskList.defaultProps = {
   tasks: [],
@@ -19,7 +18,7 @@ TaskList.defaultProps = {
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object),
   changeStatus: PropTypes.func,
   deleteTask: PropTypes.func,
   edit: PropTypes.func,

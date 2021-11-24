@@ -10,7 +10,7 @@ const Footer = ({ tasks, filter, clear }) => {
     <footer className="footer">
       <span className="todo-count">{activeTasks.length} items left</span>
       <TaskFilter filter={filter} />
-      <button className="clear-completed" onClick={clear}>
+      <button type="button" aria-label="clear completed" className="clear-completed" onClick={clear}>
         Clear completed
       </button>
     </footer>
@@ -18,12 +18,14 @@ const Footer = ({ tasks, filter, clear }) => {
 };
 
 Footer.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
   tasks: [],
-  filter: () => {},
-  clear: () => {},
+  filter: () => { },
+  clear: () => { },
 };
 
 Footer.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   filter: PropTypes.func,
   clear: PropTypes.func,
